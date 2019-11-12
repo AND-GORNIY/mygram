@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import {
   View,
@@ -7,8 +8,10 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import {useLogin} from './useLogin';
 
 const Login = () => {
+  const {handleInput} = useLogin();
   return (
     <ImageBackground
       style={styles.backgroundImageStyle}
@@ -20,12 +23,14 @@ const Login = () => {
             placeholder="Phone Number"
             style={styles.textInput}
             maxLength={13}
+            onChangeText={handleInput('phoneNumber')}
           />
           <TextInput
             placeholder="Password"
             style={styles.textInput}
             secureTextEntry={true}
             maxLength={20}
+            onChangeText={handleInput('password')}
           />
           <TouchableOpacity style={styles.butonStyle}>
             <Text style={styles.buttonText}>Log In</Text>

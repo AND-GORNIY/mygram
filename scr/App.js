@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import {SafeAreaView, StyleSheet, View, StatusBar} from 'react-native';
 import Navigator from './components/Navigator/Navigator';
