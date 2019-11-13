@@ -1,7 +1,6 @@
-//@flow
 import {useState, useCallback} from 'react';
 
-export const useLogin = () => {
+export const useLogin = loginAction => {
   const initialLocalState = {
     phoneNumber: '',
     password: '',
@@ -16,7 +15,9 @@ export const useLogin = () => {
     },
     [localState],
   );
-  //   const onSubmit =
-  //   console.log(localState);
-  return {handleInput};
+  const onSubmit = useCallback(() => {
+    loginAction(localState);
+  }, [localState]);
+
+  return {handleInput, onSubmit};
 };

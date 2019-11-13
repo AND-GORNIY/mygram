@@ -7,15 +7,19 @@ import {
   TextInput,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
+import {connect} from 'react-redux';
 import {useLogin} from './useLogin';
+import {loginAction} from '../../actions/loginAction';
 
-const Login = () => {
-  const {handleInput} = useLogin();
+// eslint-disable-next-line no-shadow
+const Login = ({loginAction, isLoading, editableField}) => {
+  const {handleInput, onSubmit} = useLogin(loginAction);
   return (
     <ImageBackground
       style={styles.backgroundImageStyle}
-      source={require('../../img/Login.jpg')}>
+      source={require('../../img/Login/Login.jpg')}>
       <View style={styles.loginView}>
         <Text style={styles.textLogo}>Welcome to mygram</Text>
         <View style={styles.inputView}>
@@ -23,6 +27,7 @@ const Login = () => {
             placeholder="Phone Number"
             style={styles.textInput}
             maxLength={13}
+            editable={editableField}
             onChangeText={handleInput('phoneNumber')}
           />
           <TextInput
@@ -30,16 +35,44 @@ const Login = () => {
             style={styles.textInput}
             secureTextEntry={true}
             maxLength={20}
+            editable={editableField}
             onChangeText={handleInput('password')}
           />
-          <TouchableOpacity style={styles.butonStyle}>
+          <TouchableOpacity
+            style={styles.butonStyle}
+            disabled={!editableField}
+            onPress={onSubmit}>
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
         </View>
+        <ActivityIndicator
+          size="large"
+          animating={isLoading}
+          color="#00ff00"
+          // style={styles.spiner}
+        />
       </View>
     </ImageBackground>
   );
 };
+
+const mapStateToProps = store => {
+  return {
+    editableField: store.userData.editableField,
+    isLoading: store.userData.isLoading,
+  };
+};
+
+const mapDispatchToprops = dispatch => {
+  return {
+    loginAction: userInfo => dispatch(loginAction(userInfo)),
+  };
+};
+
+const LoginContainer = connect(mapStateToProps, mapDispatchToprops)(Login);
+
+export default LoginContainer;
+
 const styles = StyleSheet.create({
   backgroundImageStyle: {
     flex: 1,
@@ -89,5 +122,13 @@ const styles = StyleSheet.create({
     color: '#8bf6ff',
     fontSize: 35,
   },
+  spiner: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
 });
-export default Login;

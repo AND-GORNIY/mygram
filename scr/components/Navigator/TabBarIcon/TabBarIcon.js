@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
-import {array} from '../../../img/ImageArray';
+import {imageArray} from '../../../img/iconsImage/ImageArray';
 import {Actions} from 'react-native-router-flux';
 
 class TabBarIcon extends React.PureComponent {
@@ -19,7 +19,7 @@ class TabBarIcon extends React.PureComponent {
                 activeTabIndex === index ? styles.activeIconStyle : null,
               ]}
               onPress={() => Actions[element.key]()}>
-              <Image style={styles.imageStyle} source={array[index]} />
+              <Image style={styles.imageStyle} source={imageArray[index]} />
               <Text>{element.key.toUpperCase()}</Text>
             </TouchableOpacity>
           );

@@ -1,4 +1,5 @@
 import {validation} from './validation';
+import {getDataMessage} from '../serverDataBase/sarverDataBase';
 type UserInfo = {
   cardNumber: string,
   expirationDate: string,
@@ -7,20 +8,21 @@ type UserInfo = {
   lastName: string,
 };
 
-export const callAPI = (data: UserInfo): Promise<any> => {
+const callAPI = (data: UserInfo): Promise<any> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const result = validation(data);
       if (result) {
-        resolve({data, result});
+        const dataUser = getDataMessage();
+        resolve(dataUser);
       }
-      reject({data, result});
+      reject(result);
     }, 2000);
   });
 };
 
-export class cardServise {
-  sendCardInfo(data: UserInfo) {
+export class loginRequest {
+  sendLoginData(data: UserInfo) {
     return callAPI(data);
   }
 }

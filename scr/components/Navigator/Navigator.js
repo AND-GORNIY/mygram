@@ -2,6 +2,7 @@
 import React from 'react';
 // import {StyleSheet} from 'react-native';
 import {Router, Scene, Tabs} from 'react-native-router-flux';
+import {connect} from 'react-redux';
 import ScreenChat from '../ScreenChat';
 import ScreenContacts from '../ScreenContacts';
 import ScreenProfile from '../ScreenProfile';
@@ -9,11 +10,12 @@ import Login from '../Login';
 import ScreenSettings from '../ScreenSettings';
 import TabBarIcon from './TabBarIcon';
 
-const Navigator = () => {
+const Navigator = ({isLogin}) => {
+  console.log('privet', isLogin);
   return (
     <Router>
       <Scene key="root">
-        {false ? (
+        {isLogin ? (
           <Tabs key="tab" hideNavBar={true} tabBarComponent={TabBarIcon}>
             <Scene
               key="contacts"
@@ -57,18 +59,19 @@ const Navigator = () => {
   );
 };
 
-export default Navigator;
+const mapStateToProps = store => {
+  console.log(store);
+  return {
+    isLogin: store.userData.isLogin,
+  };
+};
 
-// const styles = StyleSheet.create({
-//   view: {
-//     backgroundColor: 'black',
-//     height: 50,
-//   },
-//   tabBar: {
-//     flexDirection: 'row',
-//     borderTopColor: 'darkgrey',
-//     backgroundColor: 'ghostwhite',
-//     opacity: 1,
-//     height: '10%',
-//   },
-// });
+// const mapDispatchToprops = dispatch => {
+//   return {
+//     submCreditCard: userInfo => dispatch(submCreditCard(userInfo)),
+//   };
+// };
+
+const NavigatorContainer = connect(mapStateToProps)(Navigator);
+
+export default NavigatorContainer;
