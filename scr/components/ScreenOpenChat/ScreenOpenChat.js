@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
-const ScreenContacts = () => {
+const ScreenOpenChat = () => {
   return <View style={styles.view} />;
 };
 const styles = StyleSheet.create({
@@ -9,4 +9,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
   },
 });
-export default ScreenContacts;
+export default ScreenOpenChat;

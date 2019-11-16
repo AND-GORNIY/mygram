@@ -7,7 +7,6 @@ class TabBarIcon extends React.PureComponent {
   render() {
     const {state} = this.props.navigation;
     const activeTabIndex = state.index;
-    console.log(activeTabIndex);
     return (
       <View style={styles.tabBarStyle}>
         {state.routes.map((element, index) => {

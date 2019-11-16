@@ -44,13 +44,13 @@ const Login = ({loginAction, isLoading, editableField}) => {
             onPress={onSubmit}>
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
+          <ActivityIndicator
+            size="large"
+            animating={isLoading}
+            color="#00ff00"
+            style={styles.spiner}
+          />
         </View>
-        <ActivityIndicator
-          size="large"
-          animating={isLoading}
-          color="#00ff00"
-          // style={styles.spiner}
-        />
       </View>
     </ImageBackground>
   );
@@ -75,12 +75,13 @@ export default LoginContainer;
 
 const styles = StyleSheet.create({
   backgroundImageStyle: {
-    flex: 1,
+    height: '100%',
   },
   loginView: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    // backgroundColor:'green'
   },
   textLogo: {
     color: '#8bf6ff',
@@ -101,16 +102,15 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   inputView: {
-    flex: 0.4,
     alignItems: 'center',
     justifyContent: 'center',
+    height: '50%',
     width: '95%',
     backgroundColor: 'rgba(255,255,255,0.3)',
     margin: 10,
     borderRadius: 5,
   },
   butonStyle: {
-    flex: 0.7,
     backgroundColor: '#009adb',
     justifyContent: 'center',
     alignItems: 'center',
@@ -123,12 +123,8 @@ const styles = StyleSheet.create({
     fontSize: 35,
   },
   spiner: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

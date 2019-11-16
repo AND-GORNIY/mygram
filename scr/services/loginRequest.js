@@ -17,7 +17,7 @@ const callAPI = (data: UserInfo): Promise<any> => {
         resolve(dataUser);
       }
       reject(result);
-    }, 2000);
+    }, 300);
   });
 };
 
