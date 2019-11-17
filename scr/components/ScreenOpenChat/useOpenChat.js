@@ -10,6 +10,9 @@ export const useOpChat = (messagesBase, key, addMessageAction) => {
   }, [messagesBase, key]);
 
   const onSendMessage = useCallback(() => {
+    if (localState === '') {
+      return;
+    }
     const index = messagesBase.findIndex(item => item.key === key);
     const arrayMessages = messagesBase[index].messages;
     arrayMessages.push({sender: 1, message: localState});

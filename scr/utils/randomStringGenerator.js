@@ -1,9 +1,7 @@
 export const randomWords = require('random-words');
 
 export let array = randomWords({
-  exactly: 15,
-  wordsPerString: 8,
-  separator: ' ',
+  exactly: 1,
 });
 
 // function getRandomInt(min, max) {
