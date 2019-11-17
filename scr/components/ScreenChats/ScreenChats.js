@@ -1,22 +1,13 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import {View, StyleSheet, TextInput, FlatList} from 'react-native';
 import {connect} from 'react-redux';
-import FlatListItem from './FlatListItem';
+import FlatListItem from './FlatListItemChats';
 import Icon from 'react-native-vector-icons/Feather';
-import {Actions} from 'react-native-router-flux';
 import {useSearch} from './useSearch';
+
 
 const ScreenChats = ({userMessageBase}) => {
   const {setLocalState, filterItem} = useSearch(userMessageBase);
-
   return (
     <View style={styles.view}>
       <View style={styles.searchBar}>

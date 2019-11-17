@@ -4,6 +4,7 @@ import {
   AUTHORIZATION_ERR,
   LOG_OUT,
   CHANGE_PROFILE_INFO,
+  SEND_MESSAGE,
 } from '../types/types';
 type InitialState = {|
   isLoading: boolean,
@@ -39,6 +40,11 @@ export const loginReducer = (state: InitialState = initialState, action) => {
       return {
         ...state,
         userInfo: {...state.userInfo, ...action.payload},
+      };
+    case SEND_MESSAGE:
+      return {
+        ...state,
+        userMessageBase: [...state.userMessageBase],
       };
     default:
       return state;

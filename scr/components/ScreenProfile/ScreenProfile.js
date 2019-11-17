@@ -5,7 +5,6 @@ import {profileAction} from '../../actions/profileAction';
 import {useScreenProfile} from './useScreenProfile';
 
 const ScreenProfile = ({avatar, name, surname, bio, age, profileAction}) => {
-  console.log(profileAction);
   const {handleInput, onUnFocus, localState} = useScreenProfile(
     name,
     surname,
@@ -13,7 +12,6 @@ const ScreenProfile = ({avatar, name, surname, bio, age, profileAction}) => {
     age,
     profileAction,
   );
-  console.log(localState);
   return (
     <View style={styles.viewScreen}>
       <View style={styles.viewMaininfo}>

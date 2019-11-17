@@ -1,5 +1,4 @@
 import {useState, useCallback} from 'react';
-// import {patientData} from '../PatientData/patientData';
 
 export const useSearch = arrayItems => {
   const [localState, setLocalState] = useState('');
@@ -8,11 +7,11 @@ export const useSearch = arrayItems => {
     if (localState === '') {
       return arrayItems;
     }
+    const lowerLocalState = localState.toLowerCase();
     const filteredData = arrayItems.filter(item1 => {
       const formatedMessage = item1.messages.map(item2 => {
-        return item2.toLowerCase().slice(5);
+        return item2.message.toLowerCase();
       });
-      const lowerLocalState = localState.toLowerCase();
       return (
         formatedMessage.findIndex(item3 => item3.includes(lowerLocalState)) > -1
       );

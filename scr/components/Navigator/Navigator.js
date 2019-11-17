@@ -1,6 +1,6 @@
 //@flow
 import React from 'react';
-// import {StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Router, Scene, Tabs} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 import ScreenChats from '../ScreenChats';
@@ -48,7 +48,13 @@ const Navigator = ({isLogin}) => {
                 lazy={true}
               />
             </Tabs>
-            <Scene key="openChat" component={ScreenOpenChat} title="settings" />
+            <Scene
+              key="openChat"
+              component={ScreenOpenChat}
+              title="CHAT"
+              hideNavBar={false}
+              navigationBarStyle={styles.navBarStyle}
+            />
           </Scene>
         ) : (
           <Scene key="login" component={Login} hideNavBar={true}></Scene>
@@ -72,5 +78,12 @@ const mapStateToProps = store => {
 // };
 
 const NavigatorContainer = connect(mapStateToProps)(Navigator);
-
+const styles = StyleSheet.create({
+  navBarStyle: {
+    backgroundColor: '#EAE9EF',
+  },
+  // navButton: {
+  //   marginTop: 10,
+  // },
+});
 export default NavigatorContainer;

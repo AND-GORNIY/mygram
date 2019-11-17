@@ -1,15 +1,22 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 const returnLastmessage = arrayMessage => {
   const lastMessage = arrayMessage[arrayMessage.length - 1];
-  const lastMessageFormated = lastMessage.slice(5);
-  return lastMessageFormated;
+  return lastMessage;
 };
+const onPressProfile = key => {
+  return () => {
+    Actions.openChat(key);
+  };
+};
+
 const FlatListItem = ({data}) => {
-  // console.log(userMessageBase);
   return (
-    <TouchableOpacity style={styles.mainItemView}>
+    <TouchableOpacity
+      style={styles.mainItemView}
+      onPress={onPressProfile(data.key)}>
       <View style={styles.imageViewStyle}>
         <Image source={data.avatar} style={styles.imageStyle} />
       </View>
@@ -18,7 +25,8 @@ const FlatListItem = ({data}) => {
           {data.name} {data.surname}
         </Text>
         <Text style={styles.textMessageStyle}>
-          {returnLastmessage(data.messages)}
+          {returnLastmessage(data.messages).sender ? 'You: ' : data.name + ': '}
+          {returnLastmessage(data.messages).message}
         </Text>
       </View>
     </TouchableOpacity>
@@ -50,8 +58,8 @@ const styles = StyleSheet.create({
     color: '#50316D',
   },
   textMessageStyle: {
-    fontSize: 16,
-    paddingRight:'2%',
+    fontSize: 17,
+    paddingRight: '2%',
     width: '90%',
     flexWrap: 'wrap',
   },
